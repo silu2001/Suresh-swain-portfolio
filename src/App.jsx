@@ -13,14 +13,14 @@ import { SiTailwindcss, SiMongodb, SiExpress, SiPostman } from "react-icons/si";
 // const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
 const Container = ({ children }) => (
-  <div className="min-h-screen bg-[#0B1121] text-gray-100 px-6 md:px-16 lg:px-28 pt-px">
+  <div className="min-h-screen bg-[#0B1121] text-gray-100 px-0 md:px-16 lg:px-28 pt-1 ">
     {children}
   </div>
 );
 
 const Section = ({ id, children, className = "py-20" }) => (
   <section id={id} className={className}>
-    <div className="max-w-6xl mx-auto">{children}</div>
+    <div className="max-w-6xl mx-auto ">{children}</div>
   </section>
 );
 
@@ -35,12 +35,13 @@ const Header = () => {
 
     <header className="fixed top-0 left-0 w-full z-50 bg-gray-800/40 backdrop-blur-md border-b border-gray-800">
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
         <div className="text-lg font-semibold tracking-wide">
           Suresh<span className="text-emerald-400">.</span>
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 text-gray-300">
+        <nav className="hidden md:hiden lg:flex gap-6 text-gray-300">
           {navItems.map((item) => (
             <motion.div
               key={item}
@@ -64,16 +65,13 @@ const Header = () => {
               >
                 {item}
               </Link>
-
             </motion.div>
-
           ))}
         </nav>
 
-
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle Button */}
         <button
-          className="md:hidden text-gray-300 hover:text-white focus:outline-none"
+          className="lg:hidden text-gray-300 hover:text-white focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? (
@@ -110,7 +108,7 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ✅ Mobile Menu (only visible when menuOpen = true) */}
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
@@ -118,20 +116,12 @@ const Header = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -20, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/90 border-t border-gray-800"
+            className=" bg-black/90 border-t border-gray-800"
           >
             <div className="flex flex-col items-center gap-4 py-6 text-gray-300">
               {navItems.map((item) => (
-                <MotionLink
+                <motion.div
                   key={item}
-                  to={item}
-                  spy={true}
-                  smooth={true}
-                  offset={-80}
-                  duration={500}
-                  activeClass="text-emerald-400 font-medium"
-                  onClick={() => setMenuOpen(false)}
-                  className="cursor-pointer transition hover:text-white capitalize"
                   whileHover={{
                     scale: 1.08,
                     textShadow: "0px 0px 6px rgba(52, 211, 153, 0.8)",
@@ -139,8 +129,19 @@ const Header = () => {
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 >
-                  {item}
-                </MotionLink>
+                  <Link
+                    to={item}
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={500}
+                    activeClass="text-emerald-400 font-medium"
+                    onClick={() => setMenuOpen(false)} // close menu after click
+                    className="cursor-pointer transition hover:text-white capitalize"
+                  >
+                    {item}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.nav>
@@ -155,36 +156,32 @@ const Hero = () => {
   return (
     // Tilt rotation based on mouse position
 
-    <Section id="home" className="h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20 mt-16 sm:mt-0">
+    <Section id="home" className="h-screen flex items-center justify-center relative overflow-hidden  lg:pt-16  pt-5 mt-16 sm:mt-0 z-10 px-5 ">
 
-      {/* 🌟 Background Glow Effect */}
-        <motion.div
-        className="absolute w-[350px] h-[350px] rounded-full bg-emerald-400/20 blur-3xl"
+        {/* 🌟 Full-Width Glow Background */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-full 
+        bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.25)_0%,rgba(6,182,212,0)_75%)] 
+        blur-3xl"
+      />
+
+      {/* ✨ Animated Glow Pulse */}
+      <motion.div
         animate={{
-          opacity: [0.3, 0.7, 0.3],
-          scale: [1, 1.1, 1],
+          scale: [1, 1.05, 1],
+          opacity: [0.8, 1, 0.8],
         }}
         transition={{
-          duration: 3,
+          duration: 6,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-      />
-             <motion.div
-        className="absolute w-[350px] h-[350px]  right-20 rounded-full bg-emerald-400/20 blur-3xl"
-        animate={{
-          opacity: [0.3, 0.7, 0.3],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+        w-[60vw] h-[60vw] bg-cyan-500/10 rounded-full blur-[150px]"
       />
 
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl relative ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl relative sm:-mt-20 lg:mt-26 ">
         <motion.div initial={{ x: -40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
             Hi, I’m <span className="text-[#2570EA]">Suresh Swain</span>
@@ -280,7 +277,7 @@ const About = () => {
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          viewport={{ once: true }}
+          viewport={{once: true, amount: 0.3 }}
 
           className="space-y-5 text-center md:text-left">
           <p className="text-lg text-white">
@@ -395,7 +392,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="bg-[#0b1120] text-gray-200 text-center py-16 "
+      className="bg-[#0b1120] text-gray-200 text-center py-16 px-5 "
     >
       {/* Title */}
       <motion.h2
