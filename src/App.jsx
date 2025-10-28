@@ -6,12 +6,12 @@ import { Mail, Phone, MapPin, Github, Linkedin, Instagram, Code2 } from "lucide-
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
 import { SiTailwindcss, SiMongodb, SiExpress, SiPostman } from "react-icons/si";
 import heroImg from "/src/assets/silu.png";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
-// // 🔑 Replace with your actual EmailJS credentials
-// const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-// const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-// const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+// 🔑 Replace with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = "service_6gewmvl";
+const EMAILJS_TEMPLATE_ID = "template_0wihyal";
+const EMAILJS_PUBLIC_KEY = "Ox2mBmeRd2_Cyv8hc";
 
 const Container = ({ children }) => (
   <div className="min-h-screen bg-[#0B1121] text-gray-100 px-0 md:px-16 lg:px-28 pt-1 ">
@@ -271,16 +271,16 @@ const About = () => {
             devices.
           </p>
 
-          <motion.button
+          <motion.a
             whileHover={{
               scale: 1.03,
               boxShadow: "0px 0px 20px 2px rgba(59,130,246,0.6)",
             }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="flex items-center gap-2 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 mx-auto md:mx-0">
+            className="flex items-center gap-2 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold px-6 py-3 w-55 rounded-lg shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 mx-0 md:mx-0">
             <FaDownload className="text-white" />
             Download Resume
-          </motion.button>
+          </motion.a>
         </motion.div>
 
         {/* Right Side: Info Boxes */}
@@ -631,7 +631,7 @@ const Contact = () => {
     setStatus("sending");
 
     emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formRef.current, "YOUR_PUBLIC_KEY")
+      .sendForm("service_6gewmvl", "template_0wihyal", formRef.current, "Ox2mBmeRd2_Cyv8hc")
       .then(() => {
         setStatus("sent");
         formRef.current.reset();
@@ -759,7 +759,7 @@ const Contact = () => {
             <div>
               <label className="text-sm text-gray-400">Email</label>
               <input
-                name="reply_to"
+                name="user_email"
                 type="email"
                 required
                 placeholder="your.email@example.com"
