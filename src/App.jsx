@@ -5,6 +5,7 @@ import { FaUserAlt, FaCode, FaMapMarkerAlt, FaGraduationCap, FaDownload } from "
 import { Mail, Phone, MapPin, Github, Linkedin, Instagram, Code2 } from "lucide-react";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
 import { SiTailwindcss, SiMongodb, SiExpress, SiPostman } from "react-icons/si";
+import heroImg from "/src/assets/silu.png";
 // import emailjs from "@emailjs/browser";
 
 // // 🔑 Replace with your actual EmailJS credentials
@@ -158,29 +159,6 @@ const Hero = () => {
 
     <Section id="home" className="h-screen flex items-center justify-center relative overflow-hidden  lg:pt-16  pt-5 mt-16 sm:mt-0 z-10 px-5 ">
 
-        {/* 🌟 Full-Width Glow Background */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-full 
-        bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.25)_0%,rgba(6,182,212,0)_75%)] 
-        blur-3xl"
-      />
-
-      {/* ✨ Animated Glow Pulse */}
-      <motion.div
-        animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.8, 1, 0.8],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-        w-[60vw] h-[60vw] bg-cyan-500/10 rounded-full blur-[150px]"
-      />
-
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl relative sm:-mt-20 lg:mt-26 ">
         <motion.div initial={{ x: -40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
@@ -219,7 +197,7 @@ const Hero = () => {
 
           >
             <img
-              src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+              src={heroImg}
               className="w-xl rounded-lg shadow-2xl object-cover"
             />
           </motion.div>
@@ -365,7 +343,7 @@ const Skills = () => {
         { name: "CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
         { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
         { name: "React.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-        { name: "Tailwind CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" },
+        { name: "Tailwind CSS", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSDKn3vA2YUbXzN0ZC3gALWJ08gJN-Drl15w&s" },
       ],
     },
     {
