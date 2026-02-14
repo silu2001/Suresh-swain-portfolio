@@ -186,22 +186,26 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <div className="flex-1 mt-10 md:mt-0 flex justify-center">
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            viewport={{ once: true }}
-            className="w-72 h-72 overflow-hidden  bg-linear-to-tr from-[#1E90FF] to-[#FF69B4] rounded-3xl shadow-2xl cursor-pointer"
-            whileHover={{ rotateY: 15, rotateX: 15, scale: 1.05 }}
+      <div className="flex-1 mt-10 md:mt-0 flex justify-center">
+  <motion.div
+    initial={{ opacity: 0, x: 40 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.6, ease: "easeInOut" }}
+    viewport={{ once: true }}
+    whileHover={{ rotateY: 15, rotateX: 15, scale: 1.05 }}
+    className="relative w-72 h-72 rounded-3xl p-1 bg-linear-to-tr from-[#0CB3BA] via-[#0CB3BA] to-[#0CB3BA] "
+  >
+    {/* Inner Card */}
+    <div className="w-full h-full rounded-3xl overflow-hidden bg-black">
+      <img
+        src={heroImg}
+        alt="Hero"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </motion.div>
+</div>
 
-          >
-            <img
-              src={heroImg}
-              className="w-xl rounded-lg shadow-2xl object-cover"
-            />
-          </motion.div>
-        </div>
       </div>
 
     </Section>
@@ -272,6 +276,7 @@ const About = () => {
           </p>
 
           <motion.a
+          href="https://drive.google.com/file/d/1APQkYYocSiNsR81iP4L6WVVo0cmy0rcL/view?usp=sharing"
             whileHover={{
               scale: 1.03,
               boxShadow: "0px 0px 20px 2px rgba(59,130,246,0.6)",
@@ -491,16 +496,17 @@ const Project = () => {
   };
 
   return (
-    <section
+      <section
       id="projects"
-      className=" text-white text-center py-16 px-5"
+      className="text-white text-center py-16 px-4 md:px-10"
     >
       {/* Title */}
       <motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeInOut", duration: 0.6 }}
-        className="text-3xl font-bold uppercase mb-2 relative inline-block">
+        className="text-3xl font-bold uppercase mb-2 relative inline-block"
+      >
         PROJECTS
         <span className="block w-14 h-[3px] bg-[#664C87] mx-auto mt-2 rounded-md"></span>
       </motion.h2>
@@ -509,29 +515,32 @@ const Project = () => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeInOut", duration: 0.6 }}
-        className="text-base text-white mb-10 max-w-2xl mx-auto">
+        className="text-base mb-10 max-w-2xl mx-auto"
+      >
         A showcase of the projects I have worked on, highlighting my skills and
-        experience in various technologies
+        experience in various technologies.
       </motion.p>
 
       {/* Cards */}
       <motion.div
-         variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-       className="flex flex-wrap justify-center gap-6">
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+      >
         {projectData.map((project, index) => (
           <motion.div
-          variants={childVariants}
+            key={index}
+            variants={childVariants}
             whileHover={{
               scale: 1.05,
-              boxShadow: "0px 0px 20px 2px rgba(6, 215, 219, 0.4)",
+              boxShadow:
+                "0px 0px 20px 2px rgba(6, 215, 219, 0.4)",
             }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            key={index}
             onClick={() => setSelectedProject(project)}
-            className="bg-gray-800/40 rounded-xl p-5 text-left cursor-pointer w-[330px] transition-transform duration-300"
+            className="bg-gray-800/40 rounded-xl p-5 text-left cursor-pointer transition duration-300"
           >
             <div className="w-full h-44 overflow-hidden rounded-lg mb-4">
               <img
@@ -541,8 +550,13 @@ const Project = () => {
               />
             </div>
 
-            <h3 className="text-lg font-bold mb-2">{project.title}</h3>
-            <p className="text-sm text-[#2292FF] mb-3">{project.desc}</p>
+            <h3 className="text-lg font-bold mb-2">
+              {project.title}
+            </h3>
+
+            <p className="text-sm text-[#2292FF] mb-3">
+              {project.desc}
+            </p>
 
             <div className="flex flex-wrap gap-2">
               {project.tech.map((tag, i) => (
@@ -558,19 +572,19 @@ const Project = () => {
         ))}
       </motion.div>
 
-      {/* Popup Modal */}
+      {/* Modal */}
       {selectedProject && (
         <div
-          className="fixed inset-0 bg-[#2292FF] bg-opacity-70 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className="bg-[#131A2B] p-6 rounded-xl max-w-lg w-[25vw] relative text-left"
+            className="bg-[#131A2B] p-6 rounded-xl w-full md:w-[70%] lg:w-[40%] relative text-left"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-1 right-2 text-2xl text-white hover:text-[#2292FF]"
+              className="absolute top-2 right-4 text-2xl text-white hover:text-[#2292FF]"
             >
               ✕
             </button>
@@ -578,11 +592,16 @@ const Project = () => {
             <img
               src={selectedProject.img}
               alt={selectedProject.title}
-              className="w-full h-48 object-cover rounded-lg mb-4"
+              className="w-full h-48 md:h-56 object-cover rounded-lg mb-4"
             />
 
-            <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
-            <p className="text-sm mb-3">{selectedProject.desc}</p>
+            <h3 className="text-xl md:text-2xl font-bold mb-2">
+              {selectedProject.title}
+            </h3>
+
+            <p className="text-sm md:text-base mb-3">
+              {selectedProject.desc}
+            </p>
 
             <div className="flex flex-wrap gap-2 mb-4">
               {selectedProject.tech.map((tag, i) => (
@@ -595,12 +614,12 @@ const Project = () => {
               ))}
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
               <a
                 href={selectedProject.code}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-2 bg-[#2292FF] text-white rounded-lg font-semibold hover:opacity-90"
+                className="px-4 py-2 bg-[#2292FF] text-white rounded-lg font-semibold text-center"
               >
                 View Code
               </a>
@@ -608,7 +627,7 @@ const Project = () => {
                 href={selectedProject.live}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-2 border border-[#2292FF] text-white rounded-lg font-semibold hover:bg-[#2292FF] hover:text-white transition"
+                className="px-4 py-2 border border-[#2292FF] text-white rounded-lg font-semibold text-center hover:bg-[#2292FF] transition"
               >
                 View Live
               </a>
